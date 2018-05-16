@@ -28,7 +28,9 @@ var onError = function(err) {
 // Browsersync
 gulp.task('browser-sync', function() {
   browserSync.init({
-    proxy: "https://flugbus.test"
+    server: {
+      baseDir: "./"
+    }
   });
 });
 
@@ -46,7 +48,7 @@ gulp.task('scripts', function() {
 
 // Compile, prefix, minify, concatenate and sourcemap Stylus files
 gulp.task('stylus', function () {
-  return gulp.src(['./assets/styles/*.css', './assets/styles/*.styl'])
+  return gulp.src(['./assets/styles/lib/*.css', './assets/styles/*.styl'])
   .pipe(plumber({errorHandler: onError}))
   .pipe(sourcemaps.init())
   .pipe(stylus({
@@ -68,8 +70,7 @@ gulp.task('watch', function() {
   // Watch .styl files
   gulp.watch('assets/styles/*.styl', ['stylus']);
   // Watch .php files and reload
-  gulp.watch('*.php', browserSync.reload);
-  gulp.watch('*/*.php', browserSync.reload);
+  gulp.watch('*.html', browserSync.reload);
 });
 
 // Default Task
