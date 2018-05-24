@@ -4,15 +4,15 @@
   "main": "gulpfile.js",
   "dependencies": {},
   "devDependencies": {
-    "gulp": "latest",
-    "gulp-plumber": "latest",
-    "gulp-notify": "latest",
-    "gulp-concat": "latest",
-    "gulp-stylus": "latest",
     "autoprefixer-stylus": "latest",
     "browser-sync": "latest",
+    "gulp": "latest",
     "gulp-clean-css": "latest",
-    "gulp-uglify": "latest",
-    "gulp-sourcemaps": "latest"
+    "gulp-concat": "latest",
+    "gulp-notify": "latest",
+    "gulp-plumber": "latest",
+    "gulp-sourcemaps": "latest",
+    "gulp-stylus": "latest",
+    "gulp-uglify": "latest"
   }
 }

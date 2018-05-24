@@ -1,12 +1,31 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<link rel="stylesheet" href="dist/css/styles.min.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <link rel="stylesheet" href="dist/css/styles.min.css">
 </head>
 <body>
-  <main>hello</main>
-  <aside></aside>
-</bod>
+  <div class="wrapper">
+    <nav role="navigation">
+      <a href="index.html" title="Alle Notizen ansehen">Übersicht</a>
+      <a href="edit.html" title="Notiz hinzufügen">Notiz hinzufügen</a>
+    </nav>
+    <main class="notes" role="main">
+      <div class="notes__sort">
+        <span class="notes__sortdesc">Sortieren:</span>
+        <a href="notes__sortbutton">Fälligkeitsdatum</a>
+        <a href="notes__sortbutton">Erstellungsdatum</a>
+        <a href="notes__sortbutton">Wichtigkeit</a>
+      </div>
+      <ul class="notes__list">
+        <li>
+          <span>Nächsten Mittwoch</span>
+        </li>
+      </ul>
+    </main>
+  </div>
+
+  <script type="text/javascript" src="dist/scripts/functions.min.js"></script>
+</body>
 </html>

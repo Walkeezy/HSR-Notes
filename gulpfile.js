@@ -36,7 +36,7 @@ gulp.task('browser-sync', function() {
 
  // Concatenate, minify and sourcemap JS Files
 gulp.task('scripts', function() {
-  return gulp.src('./assets/scripts/*.js')
+  return gulp.src(['./assets/scripts/lib/*.js', './assets/scripts/*.js'])
   .pipe(plumber({errorHandler: onError}))
   .pipe(sourcemaps.init())
   .pipe(concat('functions.min.js'))
@@ -69,7 +69,7 @@ gulp.task('watch', function() {
   gulp.watch('assets/scripts/*.js', ['scripts']);
   // Watch .styl files
   gulp.watch('assets/styles/*.styl', ['stylus']);
-  // Watch .php files and reload
+  // Watch .html files and reload
   gulp.watch('*.html', browserSync.reload);
 });
 
