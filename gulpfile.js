@@ -1,20 +1,20 @@
 // Include gulp
-var gulp              = require('gulp');
+let gulp              = require('gulp');
 
  // Include plugins
-var plumber           = require('gulp-plumber');
-var notify            = require('gulp-notify');
-var concat            = require('gulp-concat');
-var stylus            = require('gulp-stylus');
-var autoprefixer      = require('autoprefixer-stylus');
-var path              = require('path');
-var browserSync       = require('browser-sync').create();
-var cleanCSS          = require('gulp-clean-css');
-var uglify            = require('gulp-uglify');
-var sourcemaps        = require('gulp-sourcemaps');
+let plumber           = require('gulp-plumber');
+let notify            = require('gulp-notify');
+let concat            = require('gulp-concat');
+let stylus            = require('gulp-stylus');
+let autoprefixer      = require('autoprefixer-stylus');
+let path              = require('path');
+let browserSync       = require('browser-sync').create();
+let cleanCSS          = require('gulp-clean-css');
+let uglify            = require('gulp-uglify-es').default;
+let sourcemaps        = require('gulp-sourcemaps');
 
 // Errornotification
-var onError = function(err) {
+let onError = function(err) {
   notify.onError({
     title:    'Gulp Fail!',
     subtitle: 'Fehlermeldung:',

@@ -8,8 +8,8 @@
 <body>
   <div class="wrapper">
     <nav role="navigation">
-      <a href="index.html" title="Alle Notizen ansehen">Übersicht</a>
-      <a href="edit.html" title="Notiz hinzufügen">Notiz hinzufügen</a>
+      <a href="index.html" class="navitem navitem--active" title="Alle Notizen ansehen">Übersicht</a>
+      <a href="edit.html" class="navitem" title="Notiz hinzufügen">Notiz hinzufügen</a>
     </nav>
     <main class="notes" role="main">
       <div class="notes__sort">
@@ -20,7 +20,16 @@
       </div>
       <ul class="notes__list">
         <li>
-          <span>Nächsten Mittwoch</span>
+          <div class="note__header">
+            <span>Nächsten Mittwoch</span>
+          </div>
+          <div class="note__content">
+            <span class="note__title">Einkaufen</span>
+            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+          </div>
+          <div class="note__footer">
+            <span class="note__created">Erstellt am 28.07.2018</span>
+          </div>
         </li>
       </ul>
     </main>

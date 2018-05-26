@@ -2,7 +2,6 @@
   "name": "hsr-notes",
   "version": "1.0.0",
   "main": "gulpfile.js",
-  "dependencies": {},
   "devDependencies": {
     "autoprefixer-stylus": "latest",
     "browser-sync": "latest",
@@ -13,6 +12,6 @@
     "gulp-plumber": "latest",
     "gulp-sourcemaps": "latest",
     "gulp-stylus": "latest",
-    "gulp-uglify": "latest"
+    "gulp-uglify-es": "latest"
   }
 }
