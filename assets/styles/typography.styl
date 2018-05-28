@@ -39,3 +39,54 @@ h5
 
 h6
   font-size 1.1rem
+
+
+// HEADINGS
+//----------------------------------------------------------
+
+button
+  cursor pointer
+  padding 0.75rem 1.25rem
+  line-height 1
+  font-weight 700
+  background Teal
+  color White
+  border none
+  border-radius BorderRadius
+  transition background 200ms, transform 200ms
+
+  &:hover
+    background shade(Teal, 5%)
+
+  &:active
+    transform scale(0.98)
+
+  svg
+    width auto
+    height 1.2rem
+    margin-right 0.75rem
+    vertical-align middle
+
+  span
+    vertical-align middle
+
+
+// INPUTS
+//----------------------------------------------------------
+
+input, textarea
+  width 100%
+  font-family FontFamily
+  font-size 1rem
+  padding 0.5rem
+  border-radius BorderRadius
+  background White
+  border 1px solid LightBlue
+
+textarea
+  resize vertical
+  height 6rem
+
+label
+  display block
+  font-size 0.75rem

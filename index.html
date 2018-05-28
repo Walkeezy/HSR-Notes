@@ -7,11 +7,10 @@
 </head>
 <body>
   <div class="wrapper">
-    <nav role="navigation">
-      <a href="index.html" class="navitem navitem--active" title="Alle Notizen ansehen">Übersicht</a>
-      <a href="edit.html" class="navitem" title="Notiz hinzufügen">Notiz hinzufügen</a>
-    </nav>
-    <main class="notes" role="main">
+    <header>
+      <button class="open-edit"><svg viewBox="0 0 20 21" xmlns="http://www.w3.org/2000/svg"><path fill="#FFF" d="M10.3 9H15v1c0 .6.4 1 1 1s1-.4 1-1V7l-7-7H2.1C1 0 0 1 0 2.1v13.8C0 17 1 18 2.1 18H9c.6 0 1-.4 1-1s-.4-1-1-1H2.1l-.1-.1V2.1l.1-.1H8v4.7C8 8 9 9 10.3 9zM10 6.7V2.9L14.1 7h-3.8c-.2 0-.3-.1-.3-.3zM19 16h-2v-2c0-.6-.4-1-1-1s-1 .4-1 1v2h-2c-.6 0-1 .4-1 1s.4 1 1 1h2v2c0 .6.4 1 1 1s1-.4 1-1v-2h2c.6 0 1-.4 1-1s-.4-1-1-1z"/></svg><span>Notiz hinzufügen</span></button>
+    </header>
+    <main class="notes">
       <div class="notes__sort">
         <span class="notes__sortdesc">Sortieren:</span>
         <a href="notes__sortbutton">Fälligkeitsdatum</a>
@@ -19,7 +18,7 @@
         <a href="notes__sortbutton">Wichtigkeit</a>
       </div>
       <ul class="notes__list">
-        <li>
+        <li class="note">
           <div class="note__header">
             <span>Nächsten Mittwoch</span>
           </div>
@@ -34,7 +33,41 @@
       </ul>
     </main>
   </div>
-
+  <div class="edit-note">
+    <form class="edit-note__form">
+      <a class="cancel-note"><svg viewBox="0 0 175 175" xmlns="http://www.w3.org/2000/svg"><path d="M146.537 1.047a3.6 3.6 0 0 0-5.077 0L89.658 52.849a3.6 3.6 0 0 1-5.077 0L32.78 1.047a3.6 3.6 0 0 0-5.077 0L1.047 27.702a3.6 3.6 0 0 0 0 5.077l51.802 51.802a3.6 3.6 0 0 1 0 5.077L1.047 141.46a3.6 3.6 0 0 0 0 5.077l26.655 26.655a3.6 3.6 0 0 0 5.077 0l51.802-51.802a3.6 3.6 0 0 1 5.077 0l51.801 51.801a3.6 3.6 0 0 0 5.077 0l26.655-26.655a3.6 3.6 0 0 0 0-5.077L121.39 89.658a3.6 3.6 0 0 1 0-5.077l51.801-51.801a3.6 3.6 0 0 0 0-5.077L146.537 1.047z" fill="#FFF" fill-rule="nonzero"/></svg></a>
+      <input type="hidden" id="note-id" name="note-id" />
+      <div class="form__field">
+        <label class="form__label" for="title">Titel</label>
+        <input class="form__input" id="title" type="text" name="title" required>
+      </div>
+      <div class="form__field">
+        <label class="form__label" for="description">Beschreibung</label>
+        <textarea class="form__input" id="description" name="description"></textarea>
+      </div>
+      <div class="meta-fields">
+        <div class="form__field">
+          <p>Wichtigkeit</p>
+          <fieldset>
+            <input type="radio" id="importance-low" name="importance" value="low">
+            <label for="importance-low"> Gering</label>
+            <input type="radio" id="importance-normal" name="importance" value="normal">
+            <label for="importance-normal"> Normal</label>
+            <input type="radio" id="importance-high" name="importance" value="high">
+            <label for="importance-high"> Hoch</label>
+          </fieldset>
+        </div>
+        <div class="form__field">
+          <label class="form__label" for="due-date">Zu erledigen bis</label>
+          <input class="form__input" id="due-date" type="date" name="due-date">
+        </div>
+      </div>
+      <div class="form__submit">
+        <button class="save-note" type="submit">Notiz speichern</button>
+      </div>
+    </form>
+  </div>
+  <div class="dimmer"></div>
   <script type="text/javascript" src="dist/scripts/functions.min.js"></script>
 </body>
 </html>

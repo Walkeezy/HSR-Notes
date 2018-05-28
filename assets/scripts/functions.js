@@ -1,6 +1,18 @@
-jQuery(function ($) {
+jQuery(function($) {
 
-  // On form submit
+  // EVENT LISTENERS
+  //----------------------------------------------------------
+
+  $('.open-edit').on('click', function(event) {
+    $('.edit-note').addClass('open');
+    $('.dimmer').addClass('active');
+  });
+
+  $('.cancel-note').on('click', function(event) {
+    $('.edit-note').removeClass('open');
+    $('.dimmer').removeClass('active');
+  });
+
   $('.edit-note__form').submit(function(event) {
     event.preventDefault();
     const formdataArray = $(this).serializeArray();
@@ -11,16 +23,21 @@ jQuery(function ($) {
     saveNote(formdataObj);
   });
 
-  // Save new note or update existing one
+  // SAVE / UPDATE NOTE
+  //----------------------------------------------------------
   function saveNote(formdata) {
+    if(formdata['note-id'] == ''){
+      noteid = createID();
+    } else {
+      noteid = formdata['note-id'];
+    };
     let notes = [];
-    const noteid = createID();
     const note = {
       id = noteid,
       title = formdata['title'],
       description = formdata['description'],
       importance = formdata['importance'],
-      duedate = formdata['duedate'],
+      duedate = formdata['due-date'],
       date = moment().toISOString(true),
       date_updated = moment().toISOString(true)
     };
@@ -37,9 +54,10 @@ jQuery(function ($) {
 
   };
 
-  // Create random ID
+  // HELPER FUNCTIONS
+  //----------------------------------------------------------
   function createID() {
-    return Math.random().toString(36).substr(2, 9);
+    return Math.random().toString(36).substr(2, 6);
   };
 
 });
