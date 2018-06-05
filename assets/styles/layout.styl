@@ -11,12 +11,13 @@ html
   font-style normal
   font-size 20px
   line-height LineHeight
-  color Black
-  background DarkGray
   min-height 100%
 
 body
   min-height 100%
+  color Black
+  background DarkGray
+  transition background-color 200ms, color 200ms
 
 *, *:before, *:after
   box-sizing inherit
@@ -34,14 +35,21 @@ body
  //----------------------------------------------------------
 
  header
-  padding 2rem 0
+  padding 5vw 0
+  display flex
+  justify-content space-between
+  align-items center
+
+.site-title
+  color White
+  margin 0
 
 
 // NOTES OVERVIEW
 //----------------------------------------------------------
 
 .notes__sort
-  color White
+  color LightBlue
 
 .notes__list
   margin 0
@@ -80,6 +88,10 @@ body
   &.open
     display flex
 
+ .edit-note__title
+  margin-top 0
+  margin-bottom 1.5rem
+
 .edit-note__form
   position relative
   width 40rem
@@ -88,6 +100,9 @@ body
   padding 2rem
   border-radius BorderRadius
   box-shadow 0 3rem 6rem rgba(0,0,0,0.1)
+
+.form__field
+  margin 1rem 0
 
 .meta-fields
   display flex
@@ -135,3 +150,23 @@ body
     transition opacity 200ms
     opacity 1
     background rgba(DarkGray, 50%)
+
+
+// FOOTER
+//----------------------------------------------------------
+
+footer
+  padding 2.5vw 0 5vw
+  text-align center
+
+.switch-style
+  cursor pointer
+  color LightBlue
+  font-size 0.8rem
+  transition color 200ms
+
+  &:hover
+    color White
+
+  &.switch-dark
+    display none

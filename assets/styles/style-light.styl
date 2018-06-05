@@ -1,0 +1,39 @@
+@import 'variables.styl'
+
+
+// LIGHT STYLE
+//----------------------------------------------------------
+
+.style--light
+  background LightGray
+
+  .switch-dark
+    display inline-block
+
+  .switch-light
+    display none
+
+  .site-title
+    color DarkGray
+
+  button
+    background MediumGray
+    box-shadow 0 1rem 2rem 0 rgba(0,0,0,0.1)
+
+    &:hover
+      background shade(MediumGray, 5%)
+
+  .cancel-note
+    background MediumGray
+
+    &:hover
+      background shade(MediumGray, 5%)
+
+  .note
+    box-shadow 0 1rem 2rem 0 rgba(0,0,0,0.05)
+
+  .switch-style
+    color DarkGray
+
+    &:hover
+      color Black
