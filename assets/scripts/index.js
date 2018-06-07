@@ -31,7 +31,27 @@
     });
 
     $('.sort-notes').on('click', function(event) {
+      $('.sort-notes').removeClass('sort-notes--active');
+      $(this).addClass('sort-notes--active');
       renderNotes(getNotes($(this).data('sort')));
+    });
+
+    $('.switch-status').on('click', function(event) {
+      renderNotes(getNotes($(this).data('status')));
+    });
+
+    $('.mark-archived').on('click', function(event) {
+      archiveNote($(this).data('note'));
+    });
+
+    $('.load-edit').on('click', function(event) {
+      const note = getNoteByID($(this).data('note'));
+      $('[name=id]').val(note[0]['id']);
+      $('[name=title]').val(note[0]['title']);
+      $('[name=content]').val(note[0]['content']);
+      $('[name=importance][value=' + note[0]['importance'] + ']').attr('checked', 'checked');
+      $('[name=date_due]').val(note[0]['date_due']);
+      openEdit();
     });
 
     $('.edit-note__form').submit(function(event) {

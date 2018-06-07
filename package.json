@@ -13,5 +13,11 @@
     "gulp-sourcemaps": "latest",
     "gulp-stylus": "latest",
     "gulp-uglify-es": "latest"
+  },
+  "dependencies": {
+    "handlebars": "^4.0.11",
+    "jquery": "^3.3.1",
+    "moment": "^2.22.2",
+    "normalize.css": "^8.0.0"
   }
 }

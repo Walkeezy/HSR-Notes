@@ -35,7 +35,7 @@ body
  //----------------------------------------------------------
 
  header
-  padding 5vw 0
+  padding 5vw 0 3vw
   display flex
   justify-content space-between
   align-items center
@@ -48,8 +48,30 @@ body
 // NOTES OVERVIEW
 //----------------------------------------------------------
 
-.notes__sort
+.notes__header
+  display flex
+  justify-content space-between
+  align-items center
+  font-size 0.75rem
+
+.sort-notes, .switch-status
+  cursor pointer
   color LightBlue
+  margin-right 0.5rem
+  border-bottom 1px solid transparent
+  padding-bottom 0.2rem
+  transition color 200ms, border-color 200ms
+
+  &:hover
+    color White
+
+  &.sort-notes--active
+    border-bottom-color White
+
+.sort-label
+  color LightBlue
+  font-weight 700
+  margin-right 0.5rem
 
 .notes__list
   margin 0
@@ -108,6 +130,10 @@ body
   display flex
   align-items flex-start
   justify-content space-between
+
+  .form__field
+    width 47.5%
+    flex 0 0 47.5%
 
 .cancel-note
   display block

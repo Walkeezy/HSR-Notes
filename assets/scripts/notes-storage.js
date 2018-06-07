@@ -40,10 +40,10 @@ function saveNote(formdata) {
   if(!notesStorage){
     notesStorage = [];
   };
-  if(formdata['note_id'] == ''){
+  if(formdata['id'] == ''){
     noteid = createID();
   } else {
-    noteid = formdata['note_id'];
+    noteid = formdata['id'];
   };
   const note = {
     id = noteid,
@@ -57,6 +57,11 @@ function saveNote(formdata) {
   notesStorage.push(note);
   localStorage.setItem('notes', JSON.stringify(notesStorage));
 };
+
+function getNoteByID(id) {
+  let notes = JSON.parse(localStorage.getItem('notes'));
+  return notes.filter(note => note.id === id);
+}
 
 // HELPERS
 //----------------------------------------------------------

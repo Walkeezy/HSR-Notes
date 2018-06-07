@@ -36,7 +36,11 @@ gulp.task('browser-sync', function() {
 
  // Concatenate, minify and sourcemap JS Files
 gulp.task('scripts', function() {
-  return gulp.src(['./assets/scripts/lib/*.js', './assets/scripts/*.js'])
+  return gulp.src([
+    './node_modules/jquery/dist/jquery.js',
+    './node_modules/handlebars/dist/handlebars.js',
+    './node_modules/moment/min/moment-with-locales.js',
+    './assets/scripts/*.js'])
   .pipe(plumber({errorHandler: onError}))
   .pipe(sourcemaps.init())
   .pipe(concat('functions.min.js'))
@@ -48,7 +52,9 @@ gulp.task('scripts', function() {
 
 // Compile, prefix, minify, concatenate and sourcemap Stylus files
 gulp.task('stylus', function () {
-  return gulp.src(['./assets/styles/lib/*.css', './assets/styles/*.styl'])
+  return gulp.src([
+    './node_modules/normalize.css/normalize.css',
+    './assets/styles/*.styl'])
   .pipe(plumber({errorHandler: onError}))
   .pipe(sourcemaps.init())
   .pipe(stylus({
