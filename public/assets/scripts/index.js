@@ -57,11 +57,7 @@
     $('.edit-note__form').submit(function(event) {
       event.preventDefault();
       const formdataArray = $(this).serializeArray();
-      const formdataObj = {};
-      $(formdataArray).each(function(i, field){
-        formdataObj[field.name] = field.value;
-      });
-      saveNote(formdataObj);
+      saveNote(formdataArray);
       renderNotes(getNotes());
       closeEdit();
       this.reset();

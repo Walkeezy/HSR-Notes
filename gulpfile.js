@@ -40,13 +40,13 @@ gulp.task('scripts', function() {
     './node_modules/jquery/dist/jquery.js',
     './node_modules/handlebars/dist/handlebars.js',
     './node_modules/moment/min/moment-with-locales.js',
-    './assets/scripts/*.js'])
+    './public/assets/scripts/*.js'])
   .pipe(plumber({errorHandler: onError}))
   .pipe(sourcemaps.init())
   .pipe(concat('functions.min.js'))
   .pipe(uglify())
   .pipe(sourcemaps.write())
-  .pipe(gulp.dest('./dist/scripts'))
+  .pipe(gulp.dest('./public/dist/scripts'))
   .pipe(browserSync.stream());
 });
 
@@ -54,7 +54,7 @@ gulp.task('scripts', function() {
 gulp.task('stylus', function () {
   return gulp.src([
     './node_modules/normalize.css/normalize.css',
-    './assets/styles/*.styl'])
+    './public/assets/styles/*.styl'])
   .pipe(plumber({errorHandler: onError}))
   .pipe(sourcemaps.init())
   .pipe(stylus({
@@ -65,18 +65,18 @@ gulp.task('stylus', function () {
   .pipe(concat('styles.min.css'))
   .pipe(cleanCSS({level: {1: {specialComments: 0}}}))
   .pipe(sourcemaps.write())
-  .pipe(gulp.dest('./dist/css'))
+  .pipe(gulp.dest('./public/dist/css'))
   .pipe(browserSync.stream());
 });
 
 // Watch Task
 gulp.task('watch', function() {
   // Watch .js files
-  gulp.watch('assets/scripts/*.js', ['scripts']);
+  gulp.watch('public/assets/scripts/*.js', ['scripts']);
   // Watch .styl files
-  gulp.watch('assets/styles/*.styl', ['stylus']);
+  gulp.watch('public/assets/styles/*.styl', ['stylus']);
   // Watch .html files and reload
-  gulp.watch('*.html', browserSync.reload);
+  gulp.watch('public/*.html', browserSync.reload);
 });
 
 // Default Task

@@ -36,26 +36,35 @@ function getNotes(order = 'duedate', status = 'active') {
 };
 
 function saveNote(formdata) {
-  let notesStorage = JSON.parse(localStorage.getItem('notes'));
-  if(!notesStorage){
-    notesStorage = [];
-  };
-  if(formdata['id'] == ''){
-    noteid = createID();
-  } else {
-    noteid = formdata['id'];
-  };
-  const note = {
-    id = noteid,
-    status = 'active',
-    title = formdata['title'],
-    content = formdata['content'],
-    importance = formdata['importance'],
-    date_due = formdata['date_due'],
-    date = moment().toISOString(true),
-  };
-  notesStorage.push(note);
-  localStorage.setItem('notes', JSON.stringify(notesStorage));
+
+  console.log(formdata);
+
+  $.ajax({
+    method: "POST", url: "/note", data: formdata
+  }).done(function( msg ) {
+    alert( "Data Saved: " + msg );
+  });
+
+  // let notesStorage = JSON.parse(localStorage.getItem('notes'));
+  // if(!notesStorage){
+  //   notesStorage = [];
+  // };
+  // if(formdata['id'] == ''){
+  //   noteid = createID();
+  // } else {
+  //   noteid = formdata['id'];
+  // };
+  // const note = {
+  //   id = noteid,
+  //   status = 'active',
+  //   title = formdata['title'],
+  //   content = formdata['content'],
+  //   importance = formdata['importance'],
+  //   date_due = formdata['date_due'],
+  //   date = moment().toISOString(true),
+  // };
+  // notesStorage.push(note);
+  // localStorage.setItem('notes', JSON.stringify(notesStorage));
 };
 
 function getNoteByID(id) {
