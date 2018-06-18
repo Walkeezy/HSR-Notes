@@ -41,8 +41,8 @@ function saveNote(formdata) {
 
   $.ajax({
     method: "POST", url: "/note", data: formdata
-  }).done(function( msg ) {
-    alert( "Data Saved: " + msg );
+  }).done(function(data) {
+    console.log( "Data Saved: " + data );
   });
 
   // let notesStorage = JSON.parse(localStorage.getItem('notes'));

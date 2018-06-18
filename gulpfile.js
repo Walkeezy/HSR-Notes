@@ -8,7 +8,6 @@ let concat            = require('gulp-concat');
 let stylus            = require('gulp-stylus');
 let autoprefixer      = require('autoprefixer-stylus');
 let path              = require('path');
-let browserSync       = require('browser-sync').create();
 let cleanCSS          = require('gulp-clean-css');
 let uglify            = require('gulp-uglify-es').default;
 let sourcemaps        = require('gulp-sourcemaps');
@@ -25,15 +24,6 @@ let onError = function(err) {
   this.emit('end');
 };
 
-// Browsersync
-gulp.task('browser-sync', function() {
-  browserSync.init({
-    server: {
-      baseDir: "./"
-    }
-  });
-});
-
  // Concatenate, minify and sourcemap JS Files
 gulp.task('scripts', function() {
   return gulp.src([
@@ -47,7 +37,6 @@ gulp.task('scripts', function() {
   .pipe(uglify())
   .pipe(sourcemaps.write())
   .pipe(gulp.dest('./public/dist/scripts'))
-  .pipe(browserSync.stream());
 });
 
 // Compile, prefix, minify, concatenate and sourcemap Stylus files
@@ -66,7 +55,6 @@ gulp.task('stylus', function () {
   .pipe(cleanCSS({level: {1: {specialComments: 0}}}))
   .pipe(sourcemaps.write())
   .pipe(gulp.dest('./public/dist/css'))
-  .pipe(browserSync.stream());
 });
 
 // Watch Task
@@ -75,9 +63,7 @@ gulp.task('watch', function() {
   gulp.watch('public/assets/scripts/*.js', ['scripts']);
   // Watch .styl files
   gulp.watch('public/assets/styles/*.styl', ['stylus']);
-  // Watch .html files and reload
-  gulp.watch('public/*.html', browserSync.reload);
 });
 
 // Default Task
-gulp.task('default', ['watch', 'browser-sync']);
+gulp.task('default', ['watch']);

@@ -6,15 +6,9 @@ module.exports.showIndex = function(req, res) {
 };
 
 module.exports.createNote = function(req, res) {
-  store.add(req.body.name, "unkown", function(err, order) {
-     res.type('text/html');
-     res.write("<html>");
-     res.write("<p>Erfolgreich!</p>");
-     res.write("<p>Ihre order: " + order.pizzaName + "</p>");
-     res.write("<p>Ihre Nummer: " + order._id + " !</p>");
-     res.write("<p><a href='/orders/" + order._id + "/'>Zeige order an</a></p>");
-     res.end("</html>");
- });
+  store.add(req.body, function(){
+    res.json('Notiz gespeichert');
+  });
 };
 
 module.exports.showOrder = function(req, res) {

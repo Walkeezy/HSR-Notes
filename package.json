@@ -4,9 +4,12 @@
   "main": "server.js",
   "author": "Kevin Walker",
   "license": "ISC",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Walkeezy/HSR-Notes"
+  },
   "devDependencies": {
     "autoprefixer-stylus": "latest",
-    "browser-sync": "latest",
     "gulp": "latest",
     "gulp-clean-css": "latest",
     "gulp-concat": "latest",
