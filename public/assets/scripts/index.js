@@ -14,7 +14,8 @@
         $('body').addClass('style--light');
         $('.switch-style').html('zum dunkeln Modus wechseln');
       };
-      renderNotes(getNotes());
+      console.log(getNotes());
+      // renderNotes(getNotes());
     };
 
     init();
@@ -56,8 +57,7 @@
 
     $('.edit-note__form').submit(function(event) {
       event.preventDefault();
-      const formdataArray = $(this).serializeArray();
-      saveNote(formdataArray);
+      addNote($(this).serializeArray());
       renderNotes(getNotes());
       closeEdit();
       this.reset();
