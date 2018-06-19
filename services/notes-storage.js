@@ -15,10 +15,20 @@ function addNote(noteData) {
   db.insert(note);
 }
 
-function getNotes(callback) {
-  db.find({}, function(err, docs) {
-    callback(docs);
+function getNote(id, callback) {
+  db.findOne({ _id: id }, function(err, note) {
+    callback(note);
   });
 }
 
-module.exports = {add : addNote, all : getNotes};
+function updateNote(id) {
+  console.log(id);
+}
+
+function getNotes(callback) {
+  db.find({}, function(err, notes) {
+    callback(notes);
+  });
+}
+
+module.exports = {add : addNote, get : getNote, update : updateNote, all : getNotes};

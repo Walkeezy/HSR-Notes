@@ -12,6 +12,18 @@ module.exports.createNote = function(req, res) {
   });
 };
 
+module.exports.getNote = function(req, res) {
+  store.get(req.params.id, function(note){
+    res.json(note);
+  });
+};
+
+module.exports.updateNote = function(req, res) {
+  store.update(req.params.id, function(){
+    res.json('Notiz aktualisiert');
+  });
+};
+
 module.exports.getNotes = function(req, res) {
   const order = req.query.order;
   const status = req.query.status;

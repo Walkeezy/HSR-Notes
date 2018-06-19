@@ -21,14 +21,17 @@
     // EVENT HANDLERS
     //----------------------------------------------------------
 
+    // Open edit form
     $('.open-edit').on('click', function(event) {
       openEdit();
     });
 
+    // Close edit form
     $('.cancel-note').on('click', function(event) {
       closeEdit();
     });
 
+    // Sort notes
     $('.sort-notes').on('click', async function(event) {
       $('.sort-notes').removeClass('sort-notes--active');
       $(this).addClass('sort-notes--active');
@@ -36,16 +39,19 @@
       renderNotes(notes);
     });
 
+    // Switch between active and archived
     $('.switch-status').on('click', async function(event) {
       const notes = await getNotes(undefined, $(this).data('status'));
       renderNotes(notes);
     });
 
-    $('.mark-archived').on('click', function(event) {
-      archiveNote($(this).data('note'));
+    // Switch notes status to active or archived
+    $(document).on('click', '.update-status', function(event) {
+      updateStatus($(this).data('note'));
     });
 
-    $('.load-edit').on('click', function(event) {
+    // Load form to edit note
+    $(document).on('click', '.load-edit', function(event) {
       const note = getNoteByID($(this).data('note'));
       $('[name=id]').val(note[0]['id']);
       $('[name=title]').val(note[0]['title']);
