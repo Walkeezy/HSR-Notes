@@ -12,8 +12,8 @@ Ein kleine, lustige Notizen-App.
 ## To do
 
 - [ ] Anzeigen, editieren und erfassen von Notizen
-- [ ] Sortieren von Notizen
-- [ ] Filtern von „abgeschlossenen" Notizen
+- [x] Sortieren von Notizen
+- [x] Filtern von „abgeschlossenen" Notizen
 - [x] Abspeichern der Daten auf dem Server
 - [x] Wechseln des Styles
 
@@ -21,6 +21,7 @@ Ein kleine, lustige Notizen-App.
 
 * Express JS (mit body parser, method-override)
 * NeDB
+* Moment.js
 
 ## Verwendete Libraries für das Frontend
 
