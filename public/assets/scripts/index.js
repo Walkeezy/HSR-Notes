@@ -1,21 +1,19 @@
 ;(function() {
   'use strict';
 
-  // Pro HTML File 1 JavaScript File (=Controller), welche die Event-Handlers registriert und die Daten vom Storage mit Hilfe von Handlebars rendert (=View).
-
   jQuery(function($) {
 
     // INITIALIZE PAGE
     //----------------------------------------------------------
 
-    function init() {
+    async function init() {
       const style = localStorage.getItem('style');
       if(style == 'light'){
         $('body').addClass('style--light');
         $('.switch-style').html('zum dunkeln Modus wechseln');
       };
-      console.log(getNotes());
-      // renderNotes(getNotes());
+      const notes = await getNotes();
+      renderNotes(notes);
     };
 
     init();
@@ -31,14 +29,16 @@
       closeEdit();
     });
 
-    $('.sort-notes').on('click', function(event) {
+    $('.sort-notes').on('click', async function(event) {
       $('.sort-notes').removeClass('sort-notes--active');
       $(this).addClass('sort-notes--active');
-      renderNotes(getNotes($(this).data('sort')));
+      const notes = await getNotes($(this).data('sort'), undefined);
+      renderNotes(notes);
     });
 
-    $('.switch-status').on('click', function(event) {
-      renderNotes(getNotes($(this).data('status')));
+    $('.switch-status').on('click', async function(event) {
+      const notes = await getNotes(undefined, $(this).data('status'));
+      renderNotes(notes);
     });
 
     $('.mark-archived').on('click', function(event) {
@@ -55,10 +55,11 @@
       openEdit();
     });
 
-    $('.edit-note__form').submit(function(event) {
+    $('.edit-note__form').submit(async function(event) {
       event.preventDefault();
       addNote($(this).serializeArray());
-      renderNotes(getNotes());
+      const notes = await getNotes();
+      renderNotes(notes);
       closeEdit();
       this.reset();
     });

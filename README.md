@@ -2,17 +2,29 @@
 
 Ein kleine, lustige Notizen-App.
 
-## Verwendete Libraries
+## Installation
 
-* jQuery
-* Handlebars.js
-* Moment.js
-* Normalize.css
+1. Repo klonen
+2. In das HSR-Notes Verzeichnis wechseln und `npm install` ausführen
+3. `node server.js` ausführen
+4. http://127.0.0.1:3000 aufrufen
 
 ## To do
 
 - [ ] Anzeigen, editieren und erfassen von Notizen
 - [ ] Sortieren von Notizen
 - [ ] Filtern von „abgeschlossenen" Notizen
-- [ ] Abspeichern der Daten auf dem Server
-- [ ] Wechseln des Styles
+- [x] Abspeichern der Daten auf dem Server
+- [x] Wechseln des Styles
+
+## Verwendete Libraries für das Backend
+
+* Express JS (mit body parser, method-override)
+* NeDB
+
+## Verwendete Libraries für das Frontend
+
+* jQuery
+* Handlebars.js
+* Moment.js
+* Normalize.css
