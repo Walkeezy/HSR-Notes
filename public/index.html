@@ -38,7 +38,6 @@
     <form class="edit-note__form">
       <h2 class="edit-note__title">Neue Notiz hinzufügen</h2>
       <a class="cancel-note"><svg viewBox="0 0 175 175" xmlns="http://www.w3.org/2000/svg"><path d="M146.537 1.047a3.6 3.6 0 0 0-5.077 0L89.658 52.849a3.6 3.6 0 0 1-5.077 0L32.78 1.047a3.6 3.6 0 0 0-5.077 0L1.047 27.702a3.6 3.6 0 0 0 0 5.077l51.802 51.802a3.6 3.6 0 0 1 0 5.077L1.047 141.46a3.6 3.6 0 0 0 0 5.077l26.655 26.655a3.6 3.6 0 0 0 5.077 0l51.802-51.802a3.6 3.6 0 0 1 5.077 0l51.801 51.801a3.6 3.6 0 0 0 5.077 0l26.655-26.655a3.6 3.6 0 0 0 0-5.077L121.39 89.658a3.6 3.6 0 0 1 0-5.077l51.801-51.801a3.6 3.6 0 0 0 0-5.077L146.537 1.047z" fill="#FFF" fill-rule="nonzero"/></svg></a>
-      <input type="hidden" id="id" name="id" />
       <div class="form__field">
         <label class="form__label" for="title">Titel der Notiz</label>
         <input class="form__input" id="title" type="text" name="title" required autocomplete="off">
@@ -77,8 +76,10 @@
       <li class="note" data-id="{{ _id }}">
         <div class="note__header">
           <span>Fällig am {{ date_due }}</span>
-          <a class="update-status" data-note="{{ _id }}">Als erledigt markieren</a>
+          {{#ifEquals status "active"}}
+          <a class="archive-note" data-note="{{ _id }}">Als erledigt markieren</a>
           <a class="load-edit" data-note="{{ _id }}">Notiz bearbeiten</a>
+          {{/ifEquals}}
         </div>
         <div class="note__content">
           <span class="note__title">{{ title }}</span>

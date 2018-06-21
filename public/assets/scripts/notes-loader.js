@@ -4,22 +4,17 @@
 //----------------------------------------------------------
 
 async function getNotes(order = 'duedate', status = 'active') {
-  let result;
-  try {
-    result = await $.ajax({
-      url: '/notes?order=' + order + '&status=' + status + '',
-      type: 'GET'
-    });
-    return result;
-  } catch (error) {
-    console.error(error);
-  };
+  const notes = await $.ajax({
+    url: '/notes?order=' + order + '&status=' + status + '',
+    type: 'GET'
+  });
+  return notes;
 };
 
 // ADD NEW NOTE
 //----------------------------------------------------------
 
-function addNote(formdata) {
+async function addNote(formdata) {
   $.ajax({
     method: 'POST',
     url: '/note',
@@ -30,18 +25,31 @@ function addNote(formdata) {
 // UPDATE NOTE
 //----------------------------------------------------------
 
-function updateStatus(noteid) {
-  console.log(noteid);
+async function updateNote(noteid, formdata) {
   $.ajax({
     method: 'PUT',
     url: '/notes/' + noteid,
+    data: formdata,
+  });
+};
+
+// ARCHIVE NOTE
+//----------------------------------------------------------
+
+async function archiveNote(noteid) {
+  $.ajax({
+    method: 'POST',
+    url: '/notes/' + noteid + '/archive',
   });
 };
 
 // GET NOTE BY ID
 //----------------------------------------------------------
 
-function getNoteByID(id) {
-  let notes = JSON.parse(localStorage.getItem('notes'));
-  return notes.filter(note => note.id === id);
+async function getNote(noteid) {
+  const note = await $.ajax({
+    url: '/notes/' + noteid,
+    type: 'GET'
+  });
+  return note;
 };

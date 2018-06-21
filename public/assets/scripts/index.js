@@ -45,31 +45,38 @@
       renderNotes(notes);
     });
 
-    // Switch notes status to active or archived
-    $(document).on('click', '.update-status', function(event) {
-      updateStatus($(this).data('note'));
+    // Archive note
+    $(document).on('click', '.archive-note', function(event) {
+      archiveNote($(this).data('note'));
+      renderNotes(notes);
     });
 
     // Load form to edit note
-    $(document).on('click', '.load-edit', function(event) {
-      const note = getNoteByID($(this).data('note'));
-      $('[name=id]').val(note[0]['id']);
-      $('[name=title]').val(note[0]['title']);
-      $('[name=content]').val(note[0]['content']);
-      $('[name=importance][value=' + note[0]['importance'] + ']').attr('checked', 'checked');
-      $('[name=date_due]').val(note[0]['date_due']);
+    $(document).on('click', '.load-edit', async function(event) {
+      const note = await getNote($(this).data('note'));
+      $('.edit-note__form').data('update', note._id);
+      $('[name=title]').val(note.title);
+      $('[name=content]').val(note.content);
+      $('[name=importance][value=' + note.importance + ']').attr('checked', 'checked');
+      $('[name=date_due]').val(note.date_due);
       openEdit();
     });
 
+    // Submit note
     $('.edit-note__form').submit(async function(event) {
       event.preventDefault();
-      addNote($(this).serializeArray());
+      if ($(this).data('update')){
+        await updateNote($(this).data('update'), $(this).serializeArray());
+      } else {
+        await addNote($(this).serializeArray());
+      }
       const notes = await getNotes();
       renderNotes(notes);
       closeEdit();
       this.reset();
     });
 
+    // Switch style
     $('.switch-style').on('click', function(event) {
       $(this).html(function(){
         return ($('body').hasClass('style--light') ? 'zum hellen Modus wechseln' : 'zum dunkeln Modus wechseln');
@@ -90,6 +97,10 @@
 
     // HELPERS
     //----------------------------------------------------------
+
+    Handlebars.registerHelper('ifEquals', function(arg1, arg2, options) {
+      return (arg1 == arg2) ? options.fn(this) : options.inverse(this);
+    });
 
     function openEdit() {
       $('.edit-note').addClass('open');

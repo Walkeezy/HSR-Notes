@@ -6,24 +6,6 @@ module.exports.showIndex = function(req, res) {
   res.sendFile(path.resolve('./public/index.html'));
 };
 
-module.exports.createNote = function(req, res) {
-  store.add(req.body, function(){
-    res.json('Notiz gespeichert');
-  });
-};
-
-module.exports.getNote = function(req, res) {
-  store.get(req.params.id, function(note){
-    res.json(note);
-  });
-};
-
-module.exports.updateNote = function(req, res) {
-  store.update(req.params.id, function(){
-    res.json('Notiz aktualisiert');
-  });
-};
-
 module.exports.getNotes = function(req, res) {
   const order = req.query.order;
   const status = req.query.status;
@@ -45,5 +27,29 @@ module.exports.getNotes = function(req, res) {
       });
     };
     res.json(notes);
+  });
+};
+
+module.exports.createNote = function(req, res) {
+  store.add(req.body, function(){
+    res.json('Notiz gespeichert');
+  });
+};
+
+module.exports.getNote = function(req, res) {
+  store.get(req.params.id, function(note){
+    res.json(note);
+  });
+};
+
+module.exports.updateNote = function(req, res) {
+  store.update(req.params.id, req.body, function(note){
+    res.json(note);
+  });
+};
+
+module.exports.archiveNote = function(req, res) {
+  store.archive(req.params.id, function(){
+    res.json('Notiz aktualisiert');
   });
 };
