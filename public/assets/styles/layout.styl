@@ -68,6 +68,9 @@ body
   &.sort-notes--active
     border-bottom-color White
 
+  &.switch-status--active
+    display none
+
 .sort-label
   color LightBlue
   font-weight 700
@@ -89,8 +92,24 @@ body
   font-weight 700
   font-size 1.2rem
 
+.note__content
+  margin 1rem 0
+
 .note__header, .note__footer
   color LightBlue
+
+.note__footer
+  display flex
+  justify-content space-between
+  align-items flex-end
+
+.note__importance
+  flex 0 0 50%
+
+.note__created
+  flex 0 0 50%
+  text-align right
+  font-size 0.7rem
 
 
 // EDIT NOTE

@@ -1,14 +1,16 @@
 const Datastore = require('nedb');
 const db = new Datastore({ filename: './data/notes.db', autoload: true });
 
-function Note(noteData) {
-  this.status = 'active';
-  this.title = noteData.title;
-  this.content = noteData.content;
-  this.importance = noteData.importance;
-  this.date_due = noteData.date_due;
-  this.date = new Date().toISOString();
-};
+class Note {
+  constructor(noteData) {
+    this.status = 'active';
+    this.title = noteData.title;
+    this.content = noteData.content;
+    this.importance = noteData.importance;
+    this.date_due = noteData.date_due;
+    this.date = new Date().toISOString();
+  }
+}
 
 function getNotes(callback) {
   db.find({}, function(err, notes) {

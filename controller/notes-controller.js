@@ -1,6 +1,7 @@
 const store = require('../services/notes-storage.js');
 const path = require('path');
 const moment = require('moment');
+moment.locale('de');
 
 module.exports.showIndex = function(req, res) {
   res.sendFile(path.resolve('./public/index.html'));

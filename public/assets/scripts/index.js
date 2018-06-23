@@ -7,13 +7,11 @@
     //----------------------------------------------------------
 
     async function init() {
-      const style = localStorage.getItem('style');
-      if(style == 'light'){
+      if(localStorage.getItem('style') == 'light'){
         $('body').addClass('style--light');
         $('.switch-style').html('zum dunkeln Modus wechseln');
       };
-      const notes = await getNotes();
-      renderNotes(notes);
+      renderNotes(await getNotes());
     };
 
     init();
@@ -21,12 +19,15 @@
     // EVENT HANDLERS
     //----------------------------------------------------------
 
-    // Open edit form
-    $('.open-edit').on('click', function(event) {
+    // Open new note form
+    $('.open-new').on('click', function(event) {
+      $('.edit-note__title').html('Neue Notiz hinzufügen');
+      $('.edit-note__form').removeData('update');
+      $('.edit-note__form')[0].reset();
       openEdit();
     });
 
-    // Close edit form
+    // Close form
     $('.cancel-note').on('click', function(event) {
       closeEdit();
     });
@@ -35,20 +36,20 @@
     $('.sort-notes').on('click', async function(event) {
       $('.sort-notes').removeClass('sort-notes--active');
       $(this).addClass('sort-notes--active');
-      const notes = await getNotes($(this).data('sort'), undefined);
-      renderNotes(notes);
+      renderNotes(await getNotes($(this).data('sort'), undefined));
     });
 
     // Switch between active and archived
     $('.switch-status').on('click', async function(event) {
-      const notes = await getNotes(undefined, $(this).data('status'));
-      renderNotes(notes);
+      $('.switch-status').removeClass('switch-status--active');
+      $(this).addClass('switch-status--active');
+      renderNotes(await getNotes(undefined, $(this).data('status')));
     });
 
     // Archive note
-    $(document).on('click', '.archive-note', function(event) {
+    $(document).on('click', '.archive-note', async function(event) {
       archiveNote($(this).data('note'));
-      renderNotes(notes);
+      renderNotes(await getNotes());
     });
 
     // Load form to edit note
@@ -59,6 +60,7 @@
       $('[name=content]').val(note.content);
       $('[name=importance][value=' + note.importance + ']').attr('checked', 'checked');
       $('[name=date_due]').val(note.date_due);
+      $('.edit-note__title').html('Notiz bearbeiten');
       openEdit();
     });
 
@@ -70,8 +72,7 @@
       } else {
         await addNote($(this).serializeArray());
       }
-      const notes = await getNotes();
-      renderNotes(notes);
+      renderNotes(await getNotes());
       closeEdit();
       this.reset();
     });
@@ -82,14 +83,18 @@
         return ($('body').hasClass('style--light') ? 'zum hellen Modus wechseln' : 'zum dunkeln Modus wechseln');
       });
       $('body').toggleClass('style--light');
-      const style = localStorage.getItem('style');
-      style == 'light' ? localStorage.setItem('style', 'dark') : localStorage.setItem('style', 'light');
+      localStorage.getItem('style') == 'light' ? localStorage.setItem('style', 'dark') : localStorage.setItem('style', 'light');
     });
 
     // RENDER NOTES
     //---------------------------------------------------------
 
     function renderNotes(notes) {
+      notes.forEach(function(note) {
+        note.date_formatted = moment(note.date).format('DD.MM.YYYY');
+        note.time_formatted = moment(note.date).format('HH:mm');
+        note.date_due_formatted = moment(note.date_due).fromNow();
+      });
       const noteTemplate = $('#noteTemplate').html();
       const renderedNotes = Handlebars.compile(noteTemplate);
       $('.notes__list').html(renderedNotes(notes));
@@ -98,8 +103,16 @@
     // HELPERS
     //----------------------------------------------------------
 
-    Handlebars.registerHelper('ifEquals', function(arg1, arg2, options) {
-      return (arg1 == arg2) ? options.fn(this) : options.inverse(this);
+    moment.locale('de');
+
+    Handlebars.registerHelper('ifEquals', function(x, y, options) {
+      return (x == y) ? options.fn(this) : options.inverse(this);
+    });
+
+    Handlebars.registerHelper('breaklines', function(text) {
+      text = Handlebars.Utils.escapeExpression(text);
+      text = text.replace(/(\r\n|\n|\r)/gm, '<br>');
+      return new Handlebars.SafeString(text);
     });
 
     function openEdit() {
