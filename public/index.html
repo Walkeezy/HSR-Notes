@@ -5,14 +5,17 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <link href="https://fonts.googleapis.com/css?family=Noto+Sans" rel="stylesheet">
   <link rel="stylesheet" href="dist/css/styles.min.css">
-  <link rel="icon" type="image/svg+xml" href="favicon.svg" sizes="any">
+  <link rel="icon" type="image/png" href="favicon.png" sizes="any">
 </head>
 <body>
 
   <div class="wrapper">
     <header>
       <h1 class="site-title">Meine Notizen</h1>
-      <button class="open-new"><svg viewBox="0 0 20 21" xmlns="http://www.w3.org/2000/svg"><path fill="#FFF" d="M10.3 9H15v1c0 .6.4 1 1 1s1-.4 1-1V7l-7-7H2.1C1 0 0 1 0 2.1v13.8C0 17 1 18 2.1 18H9c.6 0 1-.4 1-1s-.4-1-1-1H2.1l-.1-.1V2.1l.1-.1H8v4.7C8 8 9 9 10.3 9zM10 6.7V2.9L14.1 7h-3.8c-.2 0-.3-.1-.3-.3zM19 16h-2v-2c0-.6-.4-1-1-1s-1 .4-1 1v2h-2c-.6 0-1 .4-1 1s.4 1 1 1h2v2c0 .6.4 1 1 1s1-.4 1-1v-2h2c.6 0 1-.4 1-1s-.4-1-1-1z"/></svg><span>Notiz hinzufügen</span></button>
+      <button class="open-new">
+        <span class="icon"><svg width="23" height="24" viewBox="0 0 20 21" xmlns="http://www.w3.org/2000/svg"><path fill="#FFF" d="M10.3 9H15v1c0 .6.4 1 1 1s1-.4 1-1V7l-7-7H2.1C1 0 0 1 0 2.1v13.8C0 17 1 18 2.1 18H9c.6 0 1-.4 1-1s-.4-1-1-1H2.1l-.1-.1V2.1l.1-.1H8v4.7C8 8 9 9 10.3 9zM10 6.7V2.9L14.1 7h-3.8c-.2 0-.3-.1-.3-.3zM19 16h-2v-2c0-.6-.4-1-1-1s-1 .4-1 1v2h-2c-.6 0-1 .4-1 1s.4 1 1 1h2v2c0 .6.4 1 1 1s1-.4 1-1v-2h2c.6 0 1-.4 1-1s-.4-1-1-1z"/></svg></span>
+        <span class="text">Notiz hinzufügen</span>
+      </button>
     </header>
     <main class="notes">
       <div class="notes__header">
@@ -47,18 +50,33 @@
         <textarea class="form__input" id="content" name="content" autocomplete="off"></textarea>
       </div>
       <div class="meta-fields">
-        <div class="form__field">
+        <div class="form__field form__field--importance">
           <fieldset>
             <legend>Wichtigkeit</legend>
-            <input type="radio" id="importance-low" name="importance" value="1">
-            <label for="importance-low">Gering</label>
-            <input type="radio" id="importance-normal" name="importance" value="2" checked>
-            <label for="importance-normal">Normal</label>
-            <input type="radio" id="importance-high" name="importance" value="3">
-            <label for="importance-high">Hoch</label>
+            <div class="radio-field">
+              <input type="radio" id="importance-low" name="importance" value="1">
+              <label for="importance-low">
+                <span class="icon"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24"><path fill="#FFF" d="M20.285 2L9 13.567 3.714 8.556 0 12.272 9 21 24 5.715z"/></svg></span>
+                <span class="text">Gering</span>
+              </label>
+            </div>
+            <div class="radio-field">
+              <input type="radio" id="importance-normal" name="importance" value="2" checked>
+              <label for="importance-normal">
+                <span class="icon"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24"><path fill="#FFF" d="M20.285 2L9 13.567 3.714 8.556 0 12.272 9 21 24 5.715z"/></svg></span>
+                <span class="text">Normal</span>
+              </label>
+            </div>
+            <div class="radio-field">
+              <input type="radio" id="importance-high" name="importance" value="3">
+              <label for="importance-high">
+                <span class="icon"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24"><path fill="#FFF" d="M20.285 2L9 13.567 3.714 8.556 0 12.272 9 21 24 5.715z"/></svg></span>
+                <span class="text">Hoch</span>
+              </label>
+            </div>
           </fieldset>
         </div>
-        <div class="form__field">
+        <div class="form__field form__field--date_due">
           <label class="form__label" for="date_due">Zu erledigen bis</label>
           <input class="form__input" id="date_due" type="date" name="date_due" required>
         </div>
@@ -73,12 +91,21 @@
 
   <script id="noteTemplate" type="text/x-handlebars-template">
     {{#each this}}
-      <li class="note" data-id="{{ _id }}">
+      <li class="note note--importance-{{ importance }}" data-id="{{ _id }}">
         <div class="note__header">
-          <span>Fällig {{ date_due_formatted }}</span>
+          <span class="note__date-due">
+            <span class="icon"><svg width="22" height="20" viewBox="0 0 22 20" xmlns="http://www.w3.org/2000/svg"><g fill="#52616b" fill-rule="nonzero"><path d="M.9 5.4c-.1 0-.3 0-.4-.1-.2-.3-.2-.6 0-.8L4.7.3c.2-.2.5-.2.7 0 .2.2.2.5 0 .7L1.2 5.2c-.1.1-.2.2-.3.2zM21.1 5.4c-.1 0-.3 0-.4-.1L16.5 1c-.2-.2-.2-.5 0-.7.2-.2.5-.2.7 0l4.2 4.2c.2.2.2.5 0 .7 0 .1-.2.2-.3.2zM11 20c-5.2 0-9.5-4.3-9.5-9.5S5.8 1 11 1s9.5 4.3 9.5 9.5S16.2 20 11 20zm0-17c-4.1 0-7.5 3.4-7.5 7.5S6.9 18 11 18s7.5-3.4 7.5-7.5S15.1 3 11 3z"/><path d="M14.1 13.4c-.1 0-.2 0-.2-.1l-3.6-1.9c-.2 0-.3-.2-.3-.4V6c0-.3.2-.5.5-.5s.5.2.5.5v4.7l3.4 1.7c.2.1.3.4.2.7-.1.2-.3.3-.5.3z"/></g></svg></span>
+            <span class="text">Fällig {{ date_due_formatted }}</span>
+          </span>
           {{#ifEquals status "active"}}
-          <a class="archive-note" data-note="{{ _id }}">Als erledigt markieren</a>
-          <a class="load-edit" data-note="{{ _id }}">Notiz bearbeiten</a>
+          <a class="load-edit" data-note="{{ _id }}">
+            <span class="icon"><svg width="13" height="14" viewBox="0 0 18 19" xmlns="http://www.w3.org/2000/svg"><path fill="#52616b" d="M15.7 6.1l1.7-1.8c.5-.5.5-1.4 0-2l-1-1c-.5-.5-1.4-.5-2 0L12.7 3l3 3.1zM11.8 4.1L0 15.9V19h2.9L14.7 7.1z"/></svg></span>
+            <span class="text">Notiz bearbeiten</span>
+          </a>
+          <a class="archive-note small-button" data-note="{{ _id }}">
+            <span class="icon"><svg width="16" height="11" viewBox="0 0 16 11" xmlns="http://www.w3.org/2000/svg"><path fill="#58A4B0" d="M6 11c-.3 0-.5-.1-.7-.3l-5-5c-.4-.4-.4-1 0-1.4.4-.4 1-.4 1.4 0L6 8.6 14.3.3c.4-.4 1-.4 1.4 0 .4.4.4 1 0 1.4l-9 9c-.2.2-.4.3-.7.3z" fill-rule="nonzero"/></svg></span>
+            <span class="text">Erledigt</span>
+          </a>
           {{/ifEquals}}
         </div>
         <div class="note__content">
@@ -86,8 +113,11 @@
           <p>{{ breaklines content }}</p>
         </div>
         <div class="note__footer">
-          <span class="note__importance">Wichtigkeit: {{ importance }}</span>
-          <span class="note__created">Erstellt am <strong>{{ date_formatted }}</strong> um <strong>{{ time_formatted }} Uhr</strong></span><br/>
+          <span class="note__importance">
+            <span class="icon"><svg width="18" height="22" viewBox="0 0 18 22" xmlns="http://www.w3.org/2000/svg"><path d="M17.7 16.3L16 14.6V10c0-3.4-1.7-6.1-4.5-7.1C11.5 1.6 10.4.5 9 .5S6.5 1.6 6.5 2.9C3.7 3.9 2 6.6 2 10v4.6L.3 16.3c-.2.2-.3.4-.3.7v1c0 .6.4 1 1 1h5.5c0 1.4 1.1 2.5 2.5 2.5s2.5-1.1 2.5-2.5H17c.6 0 1-.4 1-1v-1c0-.3-.1-.5-.3-.7zM9 20.5c-.8 0-1.5-.7-1.5-1.5h3c0 .8-.7 1.5-1.5 1.5zM2.4 17l1.3-1.3c.2-.2.3-.4.3-.7v-5c0-2.8 1.4-4.8 3.7-5.3.5-.1.8-.5.8-1V3c0-.3.2-.5.5-.5s.5.2.5.5v.7c0 .5.3.9.8 1 2.3.5 3.7 2.5 3.7 5.3v5c0 .3.1.5.3.7l1.3 1.3H2.4z" fill="#52616b" fill-rule="nonzero"/></svg></span>
+            <span class="text">Wichtigkeit: {{ importance_in_words }}</span>
+          </span>
+          <span class="note__created">Erstellt am {{ date_formatted }} um {{ time_formatted }} Uhr</span><br/>
         </div>
       </li>
     {{/each}}

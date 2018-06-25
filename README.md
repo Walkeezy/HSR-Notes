@@ -9,13 +9,14 @@ Ein kleine, lustige Notizen-App.
 3. `node server.js` ausführen
 4. http://127.0.0.1:3000 aufrufen
 
-## To do
+## Features
 
-- [x] Anzeigen, editieren und erfassen von Notizen
-- [x] Sortieren von Notizen
-- [x] Filtern von „abgeschlossenen" Notizen
-- [x] Abspeichern der Daten auf dem Server
-- [x] Wechseln des Styles
+* Anzeigen, Erfassen und Bearbeiten von Notizen
+* Sortieren der Notizen nach Fälligskeitsdatum, Erstellugnsdatum und Wichtigkeit
+* Filtern der Notizen nach Status
+* Speichern der Daten auf eigenem Node.js-Server
+* Dunkler und heller Style
+* Responsive Design
 
 ## Verwendete Libraries für das Backend
 

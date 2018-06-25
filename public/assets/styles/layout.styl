@@ -13,6 +13,15 @@ html
   line-height LineHeight
   min-height 100%
 
+  @media Breakpoint1
+    font-size 18px
+
+  @media Breakpoint2
+    font-size 16px
+
+  @media Breakpoint3
+    font-size 14px
+
 body
   min-height 100%
   color Black
@@ -54,6 +63,10 @@ body
   align-items center
   font-size 0.75rem
 
+  @media Breakpoint3
+    display block
+    text-align center
+
 .sort-notes, .switch-status
   cursor pointer
   color LightBlue
@@ -74,16 +87,26 @@ body
 .sort-label
   color LightBlue
   font-weight 700
-  margin-right 0.5rem
+  margin 0 0.5rem 0 0
+
+.notes__sort, .notes__status
+
+  @media Breakpoint3
+    margin-top 1rem
+    padding-top 1rem
+    border-top 1px solid mix(LightBlue, DarkGray, 50%)
 
 .notes__list
   margin 0
   padding 0
   list-style none
 
+
+// NOTE
+//----------------------------------------------------------
+
 .note
   background White
-  padding 1rem
   margin 2rem 0
   border-radius BorderRadius
   box-shadow 0 1rem 2rem 0 rgba(0,0,0,0.1)
@@ -93,15 +116,66 @@ body
   font-size 1.2rem
 
 .note__content
-  margin 1rem 0
+  padding 2rem 2.5rem
+
+  @media Breakpoint3
+    padding 5vw
 
 .note__header, .note__footer
-  color LightBlue
-
-.note__footer
   display flex
   justify-content space-between
-  align-items flex-end
+  align-items center
+  font-size 0.8rem
+  padding 0 1rem
+  height 3.5rem
+  color MediumGray
+  border-bottom 1px solid shade(LightGray, 10%)
+
+.note__date-due
+  margin-right auto
+
+  .icon
+    vertical-align middle
+    margin-right 0.2rem
+
+    svg
+      width 1rem
+      height auto
+
+.load-edit
+  cursor pointer
+  margin-right 1rem
+  transition color 200ms, transform 200ms
+
+  &:hover, &:active
+    color Teal
+
+    svg path
+      fill Teal
+
+  &:active
+    transform scale(0.98)
+
+  .icon
+    margin-right 0.2rem
+
+    svg path
+      transition fill 200ms
+
+.note__importance
+
+  .icon
+    vertical-align middle
+    margin-right 0.2rem
+
+    svg
+      width 0.7rem
+      height auto
+
+.note__footer
+  padding 1.2rem 1rem
+  border-top 1px solid shade(LightGray, 10%)
+  border-bottom none
 
 .note__importance
   flex 0 0 50%
@@ -109,7 +183,7 @@ body
 .note__created
   flex 0 0 50%
   text-align right
-  font-size 0.7rem
+  font-size 0.65rem
 
 
 // EDIT NOTE
@@ -147,12 +221,19 @@ body
 
 .meta-fields
   display flex
+  margin 1rem 0 2rem
   align-items flex-start
   justify-content space-between
 
-  .form__field
-    width 47.5%
-    flex 0 0 47.5%
+.form__field--importance
+    width 55%
+    flex 0 0 55%
+    margin 0
+
+.form__field--date_due
+  width 40%
+  flex 0 0 40%
+  margin 0
 
 .cancel-note
   display block

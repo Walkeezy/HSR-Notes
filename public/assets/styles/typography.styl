@@ -5,12 +5,13 @@
 //----------------------------------------------------------
 
 a:link, a:visited
-  color Teal
+  color inherit
   text-decoration none
   transition color 200ms
 
 a:hover, a:active
-  color White
+  color inherit
+  text-decoration none
 
 
 // HEADINGS
@@ -23,6 +24,9 @@ h1, h2, h3, h4, h5, h6
 
 h1
   font-size 1.8rem
+
+  @media Breakpoint3
+    font-size 1.4rem
 
 h2
   font-size 1.6rem
@@ -40,13 +44,13 @@ h6
   font-size 1.1rem
 
 
-// HEADINGS
+// BUTTONS
 //----------------------------------------------------------
 
 button
   cursor pointer
   padding 0.75rem 1.25rem
-  line-height 1
+  line-height normal
   font-weight 700
   background Teal
   color White
@@ -55,19 +59,48 @@ button
   box-shadow 0 1rem 2rem 0 rgba(0,0,0,0.1)
   transition background 200ms, transform 200ms
 
-  &:hover
+  &:hover, &:active
     background shade(Teal, 5%)
 
   &:active
     transform scale(0.98)
 
   svg
-    width auto
-    height 1.2rem
     margin-right 0.5rem
     vertical-align middle
 
-  span
+  .text
+    vertical-align middle
+
+.small-button
+  cursor pointer
+  display inline-block
+  padding 0.3rem 0.6rem
+  line-height normal
+  background White
+  color Teal
+  border 1px solid Teal
+  border-radius BorderRadius
+  transition background 200ms, color 200ms, transform 200ms
+
+  &:hover, &:active
+    background Teal
+    color White
+
+    svg path
+      fill White
+
+  &:active
+    transform scale(0.98)
+
+  svg
+    margin-right 0.2rem
+    vertical-align middle
+
+    path
+      transition fill 200ms
+
+  .text
     vertical-align middle
 
 
@@ -94,12 +127,68 @@ textarea
   height 8rem
   line-height LineHeight
 
-label
+label, legend
   display block
   font-size 0.75rem
   font-weight 700
   margin-bottom 0.5rem
 
 fieldset
+  margin 0
   padding 0
   border none
+
+.radio-field
+  display inline-block
+  margin-top 0.75rem
+
+  @media Breakpoint3
+    display block
+
+  + .radio-field
+    margin-left 1.2rem
+
+    @media Breakpoint3
+      margin-left 0
+
+  input
+    display none
+
+    &:checked + label
+
+      .icon
+        background Teal
+        border-color Teal
+
+      svg
+       transform scale(1)
+
+  label
+    cursor pointer
+    position relative
+    vertical-align middle
+    color DarkGray
+    font-size 0.8333333rem
+    display inline-block
+
+    .text
+      vertical-align middle
+
+    .icon
+      display inline-flex
+      justify-content center
+      align-items center
+      vertical-align middle
+      width 1.15rem
+      height 1.15rem
+      margin-right 0.4rem
+      border-radius 50%
+      background mix(LightBlue, White, 10%)
+      border 1px solid LightBlue
+      transform background-color 200ms, border-color 200ms
+
+      svg
+        width 0.75rem
+        height 0.75rem
+        transform scale(0)
+        transition transform 200ms

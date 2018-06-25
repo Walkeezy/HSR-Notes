@@ -32,8 +32,28 @@
   .note
     box-shadow 0 1rem 2rem 0 rgba(0,0,0,0.05)
 
+  .sort-label
+    color DarkGray
+
+  .sort-notes, .switch-status
+    color DarkGray
+
+    &.sort-notes--active
+      border-bottom-color DarkGray
+
+
   .switch-style
     color DarkGray
 
     &:hover
       color Black
+
+  .small-button
+    color MediumGray
+    border-color MediumGray
+
+    &:hover, &:active
+      background MediumGray
+
+    svg path
+      fill MediumGray

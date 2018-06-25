@@ -94,6 +94,16 @@
         note.date_formatted = moment(note.date).format('DD.MM.YYYY');
         note.time_formatted = moment(note.date).format('HH:mm');
         note.date_due_formatted = moment(note.date_due).fromNow();
+        switch (note.importance) {
+          case '1':
+            note.importance_in_words = 'gering';
+            break;
+          case '2':
+            note.importance_in_words = 'normal';
+            break;
+          case '3':
+            note.importance_in_words = 'hoch';
+        };
       });
       const noteTemplate = $('#noteTemplate').html();
       const renderedNotes = Handlebars.compile(noteTemplate);
