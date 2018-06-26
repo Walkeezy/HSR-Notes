@@ -54,3 +54,15 @@ module.exports.archiveNote = function(req, res) {
     res.json('Notiz aktualisiert');
   });
 };
+
+module.exports.unarchiveNote = function(req, res) {
+  store.unarchive(req.params.id, function(){
+    res.json('Notiz aktualisiert');
+  });
+};
+
+module.exports.deleteNote = function(req, res) {
+  store.delete(req.params.id, function(){
+    res.json('Notiz gelöscht');
+  });
+};

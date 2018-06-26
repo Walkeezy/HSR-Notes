@@ -4,52 +4,102 @@
 //----------------------------------------------------------
 
 async function getNotes(order = 'duedate', status = 'active') {
-  const notes = await $.ajax({
-    url: '/notes?order=' + order + '&status=' + status + '',
-    type: 'GET'
-  });
-  return notes;
+  let notes;
+  try {
+    notes = await $.ajax({
+      method: 'GET',
+      url: '/notes?order=' + order + '&status=' + status + ''
+    });
+    return notes;
+  } catch (error) {
+    console.error(error);
+  };
 };
 
 // ADD NEW NOTE
 //----------------------------------------------------------
 
 async function addNote(formdata) {
-  $.ajax({
-    method: 'POST',
-    url: '/note',
-    data: formdata,
-  });
+  try {
+    $.ajax({
+      method: 'POST',
+      url: '/note',
+      data: formdata
+    });
+  } catch (error) {
+    console.error(error);
+  };
 };
 
 // UPDATE NOTE
 //----------------------------------------------------------
 
 async function updateNote(noteid, formdata) {
-  $.ajax({
-    method: 'PUT',
-    url: '/notes/' + noteid,
-    data: formdata,
-  });
+  try {
+    $.ajax({
+      method: 'PUT',
+      url: '/notes/' + noteid,
+      data: formdata
+    });
+  } catch (error) {
+    console.error(error);
+  };
 };
 
 // ARCHIVE NOTE
 //----------------------------------------------------------
 
 async function archiveNote(noteid) {
-  $.ajax({
-    method: 'POST',
-    url: '/notes/' + noteid + '/archive',
-  });
+  try {
+    $.ajax({
+      method: 'POST',
+      url: '/notes/' + noteid + '/archive'
+    });
+  } catch (error) {
+    console.error(error);
+  };
+};
+
+// UNARCHIVE NOTE
+//----------------------------------------------------------
+
+async function unarchiveNote(noteid) {
+  try {
+    $.ajax({
+      method: 'POST',
+      url: '/notes/' + noteid + '/unarchive'
+    });
+  } catch (error) {
+    console.error(error);
+  };
+};
+
+// UNARCHIVE NOTE
+//----------------------------------------------------------
+
+async function deleteNote(noteid) {
+  try {
+    $.ajax({
+      method: 'DELETE',
+      url: '/notes/' + noteid
+    });
+  } catch (error) {
+    console.error(error);
+  };
 };
 
 // GET NOTE BY ID
 //----------------------------------------------------------
 
 async function getNote(noteid) {
-  const note = await $.ajax({
-    url: '/notes/' + noteid,
-    type: 'GET'
-  });
-  return note;
+  let note;
+  try {
+    note = await $.ajax({
+      method: 'GET',
+      url: '/notes/' + noteid
+    });
+    return note;
+  } catch (error) {
+    console.error(error);
+  };
 };

@@ -42,10 +42,20 @@ function archiveNote(noteid) {
   db.update({ _id: noteid }, { $set: { status: 'archived' } }, { multi: false });
 };
 
+function unarchiveNote(noteid) {
+  db.update({ _id: noteid }, { $set: { status: 'active' } }, { multi: false });
+};
+
+function deleteNote(noteid) {
+  db.remove({ _id: noteid }, {});
+};
+
 module.exports = {
   all : getNotes,
   add : addNote,
   get : getNote,
   update : updateNote,
-  archive : archiveNote
+  archive : archiveNote,
+  unarchive : unarchiveNote,
+  delete : deleteNote
 };

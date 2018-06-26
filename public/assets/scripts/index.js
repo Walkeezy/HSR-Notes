@@ -52,6 +52,18 @@
       renderNotes(await getNotes());
     });
 
+    // Unarchive note
+    $(document).on('click', '.unarchive-note', async function(event) {
+      unarchiveNote($(this).data('note'));
+      renderNotes(await getNotes(undefined, 'archived'));
+    });
+
+    // Delete note
+    $(document).on('click', '.delete-note', async function(event) {
+      deleteNote($(this).data('note'));
+      renderNotes(await getNotes(undefined, 'archived'));
+    });
+
     // Load form to edit note
     $(document).on('click', '.load-edit', async function(event) {
       const note = await getNote($(this).data('note'));
@@ -90,24 +102,29 @@
     //---------------------------------------------------------
 
     function renderNotes(notes) {
-      notes.forEach(function(note) {
-        note.date_formatted = moment(note.date).format('DD.MM.YYYY');
-        note.time_formatted = moment(note.date).format('HH:mm');
-        note.date_due_formatted = moment(note.date_due).fromNow();
-        switch (note.importance) {
-          case '1':
-            note.importance_in_words = 'gering';
-            break;
-          case '2':
-            note.importance_in_words = 'normal';
-            break;
-          case '3':
-            note.importance_in_words = 'hoch';
-        };
-      });
-      const noteTemplate = $('#noteTemplate').html();
-      const renderedNotes = Handlebars.compile(noteTemplate);
-      $('.notes__list').html(renderedNotes(notes));
+      if(notes.length > 0){
+        notes.forEach(function(note) {
+          note.date_formatted = moment(note.date).format('DD.MM.YYYY');
+          note.time_formatted = moment(note.date).format('HH:mm');
+          note.date_due_formatted = moment(note.date_due).fromNow();
+          switch (note.importance) {
+            case '1':
+              note.importance_in_words = 'gering';
+              break;
+            case '2':
+              note.importance_in_words = 'normal';
+              break;
+            case '3':
+              note.importance_in_words = 'hoch';
+          };
+        });
+        const noteTemplate = $('#noteTemplate').html();
+        const renderedNotes = Handlebars.compile(noteTemplate);
+        $('.notes__list').html(renderedNotes(notes));
+      } else {
+        const emptyTemplate = $('#emptyTemplate').html();
+        $('.notes__list').html(emptyTemplate);
+      };
     };
 
     // HELPERS
