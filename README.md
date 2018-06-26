@@ -11,11 +11,12 @@ Ein kleine, lustige Notizen-App.
 
 ## Features
 
-* Anzeigen, Erfassen und Bearbeiten von Notizen
-* Sortieren der Notizen nach Fälligskeitsdatum, Erstellugnsdatum und Wichtigkeit
+* Anzeigen, Erfassen, Bearbeiten und Löschen von Notizen
+* Sortieren der Notizen nach Fälligskeitsdatum, Erstellungsdatum und Wichtigkeit
 * Filtern der Notizen nach Status
-* Speichern der Daten auf eigenem Node.js-Server
-* Dunkler und heller Style
+* Speichern der Daten auf Node.js-Server, Kommunikation über JSON-REST-Schnittstelle
+* Dunkler Style
+* Heller Style
 * Responsive Design
 
 ## Verwendete Libraries für das Backend

@@ -20,48 +20,48 @@
     //----------------------------------------------------------
 
     // Open new note form
-    $('.open-new').on('click', function(event) {
+    $('.open-new').on('click', async function(event) {
       $('.edit-note__title').html('Neue Notiz hinzufügen');
       $('.edit-note__form').removeData('update');
       $('.edit-note__form')[0].reset();
-      openEdit();
+      await openEdit();
     });
 
     // Close form
-    $('.cancel-note').on('click', function(event) {
-      closeEdit();
+    $('.cancel-note').on('click', async function(event) {
+      await closeEdit();
     });
 
     // Sort notes
     $('.sort-notes').on('click', async function(event) {
       $('.sort-notes').removeClass('sort-notes--active');
       $(this).addClass('sort-notes--active');
-      renderNotes(await getNotes($(this).data('sort'), undefined));
+      renderNotes(await getNotes($(this).data('sort'), await getActiveFilter()));
     });
 
     // Switch between active and archived
     $('.switch-status').on('click', async function(event) {
       $('.switch-status').removeClass('switch-status--active');
       $(this).addClass('switch-status--active');
-      renderNotes(await getNotes(undefined, $(this).data('status')));
+      renderNotes(await getNotes(await getActiveSort(), $(this).data('status')));
     });
 
     // Archive note
     $(document).on('click', '.archive-note', async function(event) {
       archiveNote($(this).data('note'));
-      renderNotes(await getNotes());
+      renderNotes(await getNotes(await getActiveSort(), await getActiveFilter()));
     });
 
     // Unarchive note
     $(document).on('click', '.unarchive-note', async function(event) {
       unarchiveNote($(this).data('note'));
-      renderNotes(await getNotes(undefined, 'archived'));
+      renderNotes(await getNotes(await getActiveSort(), 'archived'));
     });
 
     // Delete note
     $(document).on('click', '.delete-note', async function(event) {
       deleteNote($(this).data('note'));
-      renderNotes(await getNotes(undefined, 'archived'));
+      renderNotes(await getNotes(await getActiveSort(), 'archived'));
     });
 
     // Load form to edit note
@@ -73,7 +73,7 @@
       $('[name=importance][value=' + note.importance + ']').attr('checked', 'checked');
       $('[name=date_due]').val(note.date_due);
       $('.edit-note__title').html('Notiz bearbeiten');
-      openEdit();
+      await openEdit();
     });
 
     // Submit note
@@ -85,7 +85,7 @@
         await addNote($(this).serializeArray());
       }
       renderNotes(await getNotes());
-      closeEdit();
+      await closeEdit();
       this.reset();
     });
 
@@ -142,14 +142,24 @@
       return new Handlebars.SafeString(text);
     });
 
-    function openEdit() {
+    async function openEdit() {
       $('.edit-note').addClass('open');
       $('.dimmer').addClass('active');
     };
 
-    function closeEdit() {
+    async function closeEdit() {
       $('.edit-note').removeClass('open');
       $('.dimmer').removeClass('active');
+    };
+
+    async function getActiveSort() {
+      const active_sort = $('.sort-notes--active').data('sort');
+      return active_sort;
+    };
+
+    async function getActiveFilter() {
+      const active_filter = $('.switch-status--active').data('status');
+      return active_filter;
     };
 
   });
