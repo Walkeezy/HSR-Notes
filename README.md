@@ -12,7 +12,7 @@ Ein kleine, lustige Notizen-App.
 ## Features
 
 * Anzeigen, Erfassen, Bearbeiten und Löschen von Notizen
-* Sortieren der Notizen nach Fälligskeitsdatum, Erstellungsdatum und Wichtigkeit
+* Sortieren der Notizen nach Fälligkeitsdatum, Erstellungsdatum und Wichtigkeit
 * Filtern der Notizen nach Status
 * Speichern der Daten auf Node.js-Server, Kommunikation über JSON-REST-Schnittstelle
 * Dunkler Style
