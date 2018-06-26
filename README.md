@@ -5,8 +5,8 @@ Ein kleine, lustige Notizen-App.
 ## Installation
 
 1. Repo klonen
-2. In das HSR-Notes Verzeichnis wechseln und `npm install` ausführen
-3. `node server.js` ausführen
+2. In das HSR-Notes Verzeichnis wechseln `npm install` ausführen
+3. `npm start` ausführen
 4. http://127.0.0.1:3000 aufrufen
 
 ## Features

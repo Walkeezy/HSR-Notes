@@ -8,6 +8,6 @@ app.use(bodyParser.json());
 app.use(require('./routes/notes-routes.js'));
 app.use(express.static(__dirname + '/public'));
 
-const hostname = '127.0.0.1';
-const port = 3000;
-app.listen(port, hostname, () => {  console.log('Server running at http://127.0.0.1:3000'); });
+const hostname = 'localhost';
+const port = 5000;
+app.listen(port, hostname, () => {  console.log('Server running at http://localhost:5000'); });
