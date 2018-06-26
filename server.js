@@ -9,5 +9,5 @@ app.use(require('./routes/notes-routes.js'));
 app.use(express.static(__dirname + '/public'));
 
 const hostname = 'localhost';
-const port = 5000;
-app.listen(port, hostname, () => {  console.log('Server running at http://localhost:5000'); });
+const port = process.env.PORT || 5000;
+app.listen(port, hostname, () => {  console.log(`Server running at http://localhost:${port}`); });
