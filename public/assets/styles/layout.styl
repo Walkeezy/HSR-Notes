@@ -39,6 +39,9 @@ body
   width ViewportWidth
   margin 0 auto
 
+svg path
+  transition fill 200ms
+
 
  // HEADER
  //----------------------------------------------------------
@@ -86,8 +89,10 @@ body
 
 .sort-label
   color LightBlue
-  font-weight 700
   margin 0 0.5rem 0 0
+
+  @media Breakpoint3
+    display none
 
 .notes__sort, .notes__status
 
@@ -119,10 +124,6 @@ body
   border-radius BorderRadius
   box-shadow 0 1rem 2rem 0 rgba(0,0,0,0.1)
 
-.note__title
-  font-weight 700
-  font-size 1.2rem
-
 .note__content
   padding 2rem 2.5rem
 
@@ -141,14 +142,6 @@ body
 
 .note__date-due
   margin-right auto
-
-  .icon
-    vertical-align middle
-    margin-right 0.2rem
-
-    svg
-      width 1rem
-      height auto
 
 .load-edit, .delete-note
   cursor pointer
@@ -169,22 +162,6 @@ body
   &:active
     transform scale(0.98)
 
-  .icon
-    margin-right 0.2rem
-
-    svg path
-      transition fill 200ms
-
-.note__importance
-
-  .icon
-    vertical-align middle
-    margin-right 0.2rem
-
-    svg
-      width 0.7rem
-      height auto
-
 .note__footer
   padding 1.2rem 1rem
   border-top 1px solid shade(LightGray, 10%)
@@ -197,6 +174,20 @@ body
   flex 0 0 50%
   text-align right
   font-size 0.65rem
+
+// ICONS
+.note__date-due, .load-edit, .delete-note, .note__importance
+
+  .icon
+    display inline-flex
+    align-self center
+    margin-right 0.2rem
+
+    svg
+      top 0.125em
+      position relative
+      width 0.8rem
+      height 0.8rem
 
 
 // EDIT NOTE
@@ -229,6 +220,9 @@ body
   border-radius BorderRadius
   box-shadow 0 3rem 6rem rgba(0,0,0,0.1)
 
+  @media Breakpoint3
+    padding 6vw 4vw 8vw
+
 .form__field
   margin 1rem 0
 
@@ -239,14 +233,23 @@ body
   justify-content space-between
 
 .form__field--importance
-    width 55%
-    flex 0 0 55%
-    margin 0
+  width 55%
+  flex 0 0 55%
+  margin 0
+
+  @media Breakpoint3
+    width 45%
+    flex 0 0 45%
+
 
 .form__field--date_due
   width 40%
   flex 0 0 40%
   margin 0
+
+  @media Breakpoint3
+    width 50%
+    flex 0 0 50%
 
 .cancel-note
   display block
@@ -263,6 +266,12 @@ body
   justify-content center
   transition background 200ms, transform 200ms
 
+  @media Breakpoint3
+    top -0.5rem
+    right -0.5rem
+    width 2.5rem
+    height 2.5rem
+
   &:hover
     background shade(Teal, 5%)
 
@@ -272,6 +281,10 @@ body
   svg
     width 1rem
     height 1rem
+
+    @media Breakpoint3
+      width 1.25rem
+      height 1.25rem
 
 .dimmer
   z-index Dimmer
@@ -295,7 +308,7 @@ body
 //----------------------------------------------------------
 
 footer
-  padding 2.5vw 0 5vw
+  padding 2.5vw 0 10vw
   text-align center
 
 .switch-style

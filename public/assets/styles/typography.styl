@@ -18,7 +18,7 @@ a:hover, a:active
 //----------------------------------------------------------
 
 h1, h2, h3, h4, h5, h6
-  font-weight 700
+  font-weight 400
   margin 1rem 0
   line-height 1.35
 
@@ -29,19 +29,11 @@ h1
     font-size 1.4rem
 
 h2
-  font-size 1.6rem
-
-h3
   font-size 1.4rem
 
-h4
-  font-size 1.3rem
-
-h5
+h3
   font-size 1.2rem
-
-h6
-  font-size 1.1rem
+  font-weight 700
 
 
 // BUTTONS
@@ -51,7 +43,7 @@ button
   cursor pointer
   padding 0.75rem 1.25rem
   line-height normal
-  font-weight 700
+  font-weight 400
   background Teal
   color White
   border none
@@ -65,17 +57,22 @@ button
   &:active
     transform scale(0.98)
 
-  svg
-    margin-right 0.5rem
-    vertical-align middle
+  .icon
+    display inline-flex
+    align-self center
+    margin-right 0.2rem
 
-  .text
-    vertical-align middle
+    svg
+      top 0.125em
+      position relative
+      width 1rem
+      height 1rem
 
 .small-button
   cursor pointer
   display inline-block
   padding 0.3rem 0.6rem
+  font-size 0.8rem
   line-height normal
   background White
   color Teal
@@ -93,15 +90,18 @@ button
   &:active
     transform scale(0.98)
 
-  svg
-    margin-right 0.3rem
-    vertical-align middle
+  .icon
+    display inline-flex
+    align-self center
+    margin-right 0.2rem
 
-    path
-      transition fill 200ms
+    svg
+      top 0.125em
+      position relative
+      width 0.8rem
+      height 0.8rem
 
   .text
-    vertical-align middle
 
     @media Breakpoint3
       display none
@@ -111,6 +111,7 @@ button
 //----------------------------------------------------------
 
 input, textarea
+  appearance none
   width 100%
   font-family inherit
   font-size 1rem
@@ -133,7 +134,7 @@ textarea
 label, legend
   display block
   font-size 0.75rem
-  font-weight 700
+  font-weight normal
   margin-bottom 0.5rem
 
 fieldset
